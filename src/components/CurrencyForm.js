@@ -1,25 +1,46 @@
-import {useState} from 'react';
+import {useState} from 'react'
+import axios from 'axios';
+import React  from 'react';
+
+const NewCurrencyForm = () => {
+
+    const [currency, setCurrency] = useState(`ethereum`)
+    const [fiat, setFiat] = useState(`usd`)
+    const [price, setPrice] = useState(``)
 
 
-
-
-const NewCurrencyForm = (props) => {
-
-    const [currency, setCurrency] = useState()
-
-    const handleSubmit = (event) => {
-        if (!event.key) return
-        // setCurrency(event.target.value)
+    const handleSubmit = (e) => {
         console.log(currency)
+        e.preventDefault();
+
+        axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=` + currency + `&vs_currencies=` + fiat)
+
+        .then(response => {
+            setPrice(response.data.[currency].usd)
+            console.log(price)
+    
+        }); 
     }
 
-    return(
-            <form onSubmit={handleSubmit}> 
-                <input type="text" placeholder = 'input Crypto' value = {currency} 
-                    onChange={(event) => setCurrency(event.target.value)} required /> 
-                <input type="submit" value="Search" /> 
-            </form>
+    axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=` + currency + `&vs_currencies=` + fiat)
 
+    .then(response => {
+        setPrice(response.data.[currency].usd)
+        console.log(price)
+
+    }); 
+
+    
+    return(
+
+        <form onSubmit={handleSubmit}>>
+            <input id = 'currency' placeholder = 'input crypto' value={currency} onChange={(e) => setCurrency(e.target.value)} required></input>
+            <input type="submit" value="Search" /> 
+
+            <br/>
+            {currency} price (USD): ${price}
+
+        </form>
 
     )
 }

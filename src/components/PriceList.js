@@ -1,40 +1,74 @@
 import axios from 'axios';
 import React  from 'react';
-
+import {Component} from 'react'
 
 // const API_Key = `?ids=bitcoin&vs_currencies=usd`
-const Currency = `ethereum`
-const Fiat = `usd`
-const API_Key = `?ids=`+Currency+`&vs_currencies=`+Fiat
+
+// const button = select('submit')
+// const currency = `ethereum`
+// const Fiat = `usd`
+// const API_Key = `?ids=`+currency+`&vs_currencies=`+Fiat
 
 
 export default class PriceList extends React.Component {
 
-    state = {
-        prices:[],
+
+    constructor(){
+        super()
+        this.state = {
+        prices:'',
+        currency: `ethereum`,
+        Fiat:`usd`,
+        }
     }
+
+    
+    // state = {
+    //     prices:'',
+    //     currency:`ethereum`,
+    //     Fiat:`usd`,
+    //     API_Key: `?ids=`+ this.state.currency +`&vs_currencies=`+ this.state.Fiat,
+    // }
+
+    // handleChange = event =>{
+    //     event.preventDefault();
+    //     this.setState({currency: event.target.value});
+    //     console.log(this.state.currency)
+    // };
+
+    onSubmit = event =>{
+
+        this.setState({currency: event.target.value});
+        console.log(this.state.currency)
+    }
+
 
     componentDidMount(){
         // axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd`)
-        axios.get(`https://api.coingecko.com/api/v3/simple/price` + API_Key)
-        
-        
+        // axios.get(`https://api.coingecko.com/api/v3/simple/price` + this.state.API_Key)
 
+        axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=` + this.state.currency + `&vs_currencies=` + this.state.Fiat)
+
+            
         .then(res => {
-            console.log(res.data);
-            this.setState({prices: res.data.[Currency].usd}); //By setting the state will have access to this in render. 
-            // this.setState({prices: res.data.ethereum.usd});
+            // console.log(res.data);
+            this.setState({prices: res.data.[this.state.currency].usd}); //By setting the state will have access to this in render. 
         })
     }
-    
+
     render(){
         return(
-            <ul>
-                {Currency} Price (USD): ${this.state.prices}
-             {/* {this.state.prices.map(price => (
-                <li>{price.usd}</li>))         */}
-            </ul>
+            <form onSubmit = {this.handleSubmit}>
+            
+                {/* <input type = "text" placeholder = 'input crypto' name = "name" onChange = {this.handleChange}/> */}
+                <input type = "text" placeholder = 'input crypto' name = "name" onChange={(event) => this.setState({currency: event.target.value})} required/>
+                <button type = "submit">Search</button>
+                <br/>
+                {this.state.currency} price (USD): ${this.state.prices}
+                {/* {console.log(this.state.prices)}
+                {console.log(this.state.currency)} */}
 
+            </form>
         )
     }
 }
