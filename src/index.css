@@ -11,7 +11,7 @@ body {
 
 .Heading{
 text-align: center;
-background-color: #458b8b ;
+background-color: #53c7a0 ;
 margin: 0%;
 /* background-color:#B6509E; */
 /* min-height: 100px; */
@@ -22,13 +22,17 @@ padding: 30px;
 }
 
 .CurrencySearch{
-margin: 6px;
+margin: 6px 0;
 padding: 6px 0;
 text-align: center;
-margin: 50px auto; 
+margin: 10px auto; 
 display: block;
 border: 1px solid #ddd;
-width: 90%;
+width: 100%;
+box-sizing: border-box;
+background: #53c7a0;
+color: rgb(0, 0, 0);
+
 
 }
 
@@ -37,10 +41,22 @@ width: 90%;
 margin: 6px;
 padding: 6px 0;
 text-align: center;
-margin: 50px auto; 
+margin: 20px auto; 
 display: block;
-border: 1px solid #ddd;
-width: 90%;
+width: 50%;
 
 
 }
+
+.error{
+  color:red;
+  font-size: large;
+
+}
+
+.logo{
+  display: flex;
+  flex:1
+
+}
+

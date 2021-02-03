@@ -38,3 +38,25 @@
 //         )
 //     }
 // }
+
+  // axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=` + currency + `&vs_currencies=` + fiat)
+
+    // .then(response => {
+    //     setPrice(response.data.[currency].usd)
+    //     console.log(price)
+
+    // }); 
+
+    // useEffect(() => {
+    //     async function fetchData () {
+    //     const request = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=` + currency + `&vs_currencies=` + fiat)
+    //     console.log(request)
+    //     return request
+    //     }
+    //     // .then(response => {
+    //     //     setPrice(response.data.[currency].usd)
+    //     //     console.log(price, 'orange')
+    
+    //     // }); 
+
+    // }, [currency])

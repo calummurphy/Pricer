@@ -24,7 +24,7 @@ const library = {
 const NewCurrencyForm = () => {
 
 
-    const [currency, setCurrency] = useState(`ethereum`)
+    const [currency, setCurrency] = useState(`...`)
     const [fiat, setFiat] = useState(`usd`)
     const [price, setPrice] = useState(``)
     const [error, setError] = useState(``)
@@ -53,10 +53,10 @@ const NewCurrencyForm = () => {
 
     return(
         <div>
-           <input  placeholder = 'input crypto'  onChange={(e) => setCurrency(e.target.value.toUpperCase())} required />
+           <input  type = 'text' placeholder = 'Enter ticker here...'  onChange={(e) => setCurrency(e.target.value.toUpperCase())} required />
             <button onClick = {handleSubmit}>Search</button>
-            <p>{error} </p>
-            <p>{currency} price (USD): ${price}</p>
+            <p className = 'error'>{error} </p>
+            <p >{currency} price (USD): ${price}</p>
             
 
         </div>
@@ -69,24 +69,4 @@ export default NewCurrencyForm
 
 
 
-  // axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=` + currency + `&vs_currencies=` + fiat)
 
-    // .then(response => {
-    //     setPrice(response.data.[currency].usd)
-    //     console.log(price)
-
-    // }); 
-
-    // useEffect(() => {
-    //     async function fetchData () {
-    //     const request = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=` + currency + `&vs_currencies=` + fiat)
-    //     console.log(request)
-    //     return request
-    //     }
-    //     // .then(response => {
-    //     //     setPrice(response.data.[currency].usd)
-    //     //     console.log(price, 'orange')
-    
-    //     // }); 
-
-    // }, [currency])

@@ -1,5 +1,4 @@
 import PriceList from './components/PriceList'
-import PriceInput from './components/PriceInput';
 import NewCurrencyForm from './components/CurrencyForm';
 import {useState} from 'react'
 import ReactLogo from './PRICER logo svg.svg';
