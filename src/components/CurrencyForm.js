@@ -5,6 +5,19 @@ import React  from 'react';
 const library = {
     'BTC': 'bitcoin',
     'ETH': 'ethereum',
+    'USDT':'tether',
+    'XRP':'xrp',
+    'DOT':'polkadot',
+    'ADA':'cardano',
+    'LINK':'chainlink',
+    'LTC':'litecoin',
+    'BCH':'bitcoin-cash',
+    'UNI':'uniswap',
+    'DOGE':'dogecoin',
+    'AAVE':'aave',
+    'SUSHI':'sushi',
+    'YFI':'yearn-finance',
+
 }
 
 
@@ -14,13 +27,19 @@ const NewCurrencyForm = () => {
     const [currency, setCurrency] = useState(`ethereum`)
     const [fiat, setFiat] = useState(`usd`)
     const [price, setPrice] = useState(``)
+    const [error, setError] = useState(``)
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(library,currency, library[currency])
+        
+        if (library[currency] == undefined){
+            setError('Please enter a relevant Ticker')
+            return console.error('error');
+        }
 
-        // console.log(currency, fiat)
+        else{
+        setError('')
         axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=` + library[currency] + `&vs_currencies=` + fiat)
 
         .then(response => {
@@ -28,19 +47,26 @@ const NewCurrencyForm = () => {
             console.log(price)
     
         }); 
+        }
     }
 
 
     return(
         <div>
-           <input  placeholder = 'input crypto' value = {currency} onChange={(e) => setCurrency(e.target.value)} required />
+           <input  placeholder = 'input crypto'  onChange={(e) => setCurrency(e.target.value.toUpperCase())} required />
             <button onClick = {handleSubmit}>Search</button>
+            <p>{error} </p>
             <p>{currency} price (USD): ${price}</p>
+            
+
         </div>
     );
 }
 
 export default NewCurrencyForm
+
+
+
 
 
   // axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=` + currency + `&vs_currencies=` + fiat)

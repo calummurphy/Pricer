@@ -29,7 +29,6 @@ export default class PriceList extends React.Component {
     }
 
 
-
     render(){
         return(
             <div>
@@ -40,40 +39,3 @@ export default class PriceList extends React.Component {
         )
     }
 }
-
-
-
-
-
-    // componentDidMount(){
-    //     // axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd`)
-    //     // axios.get(`https://api.coingecko.com/api/v3/simple/price` + this.state.API_Key)
-
-    //     axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=` + this.state.currency + `&vs_currencies=` + this.state.Fiat)
-
-            
-    //     .then(res => {
-    //         // console.log(res.data);
-    //         this.setState({prices: res.data.[this.state.currency].usd}); //By setting the state will have access to this in render. 
-    //     })
-    // }
-
-    // onSubmit = event =>{
-
-    //     this.setState({currency: event.target.value});
-    //     console.log(this.state.currency)
-    // }
-
-
-    // state = {
-    //     prices:'',
-    //     currency:`ethereum`,
-    //     Fiat:`usd`,
-    //     API_Key: `?ids=`+ this.state.currency +`&vs_currencies=`+ this.state.Fiat,
-    // }
-
-    // handleChange = event =>{
-    //     event.preventDefault();
-    //     this.setState({currency: event.target.value});
-    //     console.log(this.state.currency)
-    // };
