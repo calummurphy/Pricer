@@ -8,7 +8,6 @@ import ReactLogo from './Pricer written logo.svg';
 function App() {
 
 
-
   return (
     <div className="App">      
       <header className="App-header">
